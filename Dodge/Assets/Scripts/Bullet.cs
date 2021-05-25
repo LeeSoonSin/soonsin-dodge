@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 8f;
     private Rigidbody bulletRigidbody;
+    public int damage = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +17,16 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        PlayerController playerController = other.GetComponent<PlayerController>();
-
-        if(playerController != null)
+        if (other.tag == "Player")
         {
-            playerController.Die();
+            PlayerController playerController = other.GetComponent<PlayerController>();
+
+            if (playerController != null)
+            {
+                playerController.GetDamage(damage);
+                Destroy(gameObject);
+                //playerController.Die();
+            }
         }
     }
 }

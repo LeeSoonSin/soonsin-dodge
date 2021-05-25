@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody playerRigidBody;// 이동에 사용할 리지드바디 컴포넌트
     public float speed = 8f; // 이동속도 
+
+    public int hp = 100;
+    public HPBar hpbar;
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>();
@@ -32,5 +36,23 @@ public class PlayerController : MonoBehaviour
 
         GameManager gameManager = FindObjectOfType<GameManager>();
         gameManager.EndGame();
+    }
+    public void GetDamage(int damage)
+    {
+        hp -= damage;
+        hpbar.SetHP(hp);
+        if(hp <= 0)
+        {
+            Die();
+        }
+    }
+    public void GetHeal(int heal)
+    {
+        hp += heal;
+        if(hp > 100)
+        {
+            hp = 100;
+        }
+        hpbar.SetHP(hp);
     }
 }
