@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4637553919083830369}
   m_Layer: 0
   m_Name: Bullet Spawner
-  m_TagString: Untagged
+  m_TagString: BulletSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +58,7 @@ MonoBehaviour:
     type: 3}
   spawnRateMin: 0.5
   spawnRateMax: 3
+  hp: 100
 --- !u!23 &7836397619141538365
 MeshRenderer:
   m_ObjectHideFlags: 0

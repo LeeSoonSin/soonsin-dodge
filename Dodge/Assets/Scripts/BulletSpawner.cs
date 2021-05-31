@@ -12,6 +12,17 @@ public class BulletSpawner : MonoBehaviour
     private float spawnRate; // 생성주기
     private float timeAfterSpawn; // 최근 생성 시점에서 지난 시간
 
+    public int hp = 100;
+
+    public void GetDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

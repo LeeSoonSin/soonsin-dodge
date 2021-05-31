@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
 
     public int hp = 100;
     public HPBar hpbar;
+
+    private float spawnRate = 0.2f; // 플레이어는 0.2초마다 총알발사
+    private float timerAfterSpawn;
+    public GameObject playerbulletPrefab;
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>();
@@ -28,6 +32,13 @@ public class PlayerController : MonoBehaviour
         Vector3 newVelocity = new Vector3(xSpeed, 0f, zSpeed);
 
         playerRigidBody.velocity = newVelocity;
+        timerAfterSpawn += Time.deltaTime;
+
+        if(Input.GetButton("Fire1") && timerAfterSpawn >= spawnRate)
+        {
+            timerAfterSpawn = 0;
+            GameObject bullet = Instantiate(playerbulletPrefab, transform.position, transform.rotation);
+        }
     }
     public void Die()
     {
